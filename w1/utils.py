@@ -112,6 +112,11 @@ class DataReader:
         }
         """
     ######################################## YOUR CODE HERE ##################################################
+        data = open(self._fp, 'r')
+
+        for row in data:
+            value_list = row.split(self._sep)    
+            yield {col:value for col, value in zip(self._col_names, value_list)}
 
     ######################################## YOUR CODE HERE ##################################################
 

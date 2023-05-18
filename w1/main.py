@@ -44,6 +44,22 @@ def revenue_per_region(dp: DataProcessor) -> Dict:
     }
     """
     ######################################## YOUR CODE HERE ##################################################
+    
+    # get generator from DataProcessor instance
+    data = dp.data_reader
+    data_gen = (row for row in data)
+
+    # skip first row as it is the column name
+    _ = next(data_gen)
+
+    revenue_dict = {}
+
+    # aggregate revenue per country
+    for row in data_gen:
+        country = row['Country']
+        revenue_dict[country] = revenue_dict.get(country, 0) + dp.to_float(row['TotalPrice'])
+
+    return revenue_dict
 
     ######################################## YOUR CODE HERE ##################################################
 
